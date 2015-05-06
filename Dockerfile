@@ -6,10 +6,12 @@ ENV JENKINS_HOME     /var/jenkins_home
 RUN mv /etc/localtime /etc/localtime.bak && \
     ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
-RUN   rpm -i http://pkgs.repoforge.org/proxytunnel/proxytunnel-1.9.0-1.el7.rf.x86_64.rpm
+ADD   http://pkgs.repoforge.org/proxytunnel/proxytunnel-1.9.0-1.el7.rf.x86_64.rpm /tmp/
+RUN   rpm -i /tmp/proxytunnel-1.9.0-1.el7.rf.x86_64.rpm
 RUN   yum -y install git
 RUN   yum -y install zip
 RUN   yum -y install unzip
+RUN   yum -y install tar
 RUN   yum -y install java
 RUN   yum -y install maven
 
