@@ -23,5 +23,6 @@ RUN echo 'PATH=$PATH:/opt/sbt/' > /etc/profile.d/sbt.sh
 
 RUN useradd -d $JENKINS_HOME -m -s /bin/bash jenkins
 RUN mkdir $JENKINS_HOME/logs
-RUN usermod -m -d "$JENKINS_HOME" jenkins && chown -R jenkins "$JENKINS_HOME"
+RUN usermod -m -d "$JENKINS_HOME" jenkins
+RUN chown -R jenkins:jenkins "$JENKINS_HOME"
 
