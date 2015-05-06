@@ -15,6 +15,7 @@ RUN   yum -y install tar
 RUN   yum -y install java
 RUN   yum -y install maven
 
+ENV SBT_LAUNCHER_URL http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.8/sbt-launch.jar
 RUN mkdir -p /opt/sbt/
 RUN curl -SL $SBT_LAUNCHER_URL -o /opt/sbt/sbt-launch.jar
 ADD sbt /opt/sbt/
