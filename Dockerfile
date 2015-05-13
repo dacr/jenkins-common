@@ -8,12 +8,12 @@ RUN mv /etc/localtime /etc/localtime.bak && \
 
 ADD   http://pkgs.repoforge.org/proxytunnel/proxytunnel-1.9.0-1.el7.rf.x86_64.rpm /tmp/
 RUN   rpm -i /tmp/proxytunnel-1.9.0-1.el7.rf.x86_64.rpm
-RUN   yum -y install git
-RUN   yum -y install zip
-RUN   yum -y install unzip
+RUN   yum -y install git svn
+RUN   yum -y install zip unzip
 RUN   yum -y install tar
 RUN   yum -y install java
 RUN   yum -y install maven
+RUN   yum -y install ant
 
 ENV SBT_LAUNCHER_URL http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.8/sbt-launch.jar
 RUN mkdir -p /opt/sbt/
