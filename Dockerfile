@@ -6,16 +6,25 @@ ENV JENKINS_HOME     /var/jenkins_home
 RUN mv /etc/localtime /etc/localtime.bak && \
     ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
-ADD   http://pkgs.repoforge.org/proxytunnel/proxytunnel-1.9.0-1.el7.rf.x86_64.rpm /tmp/
-RUN   rpm -i /tmp/proxytunnel-1.9.0-1.el7.rf.x86_64.rpm
 RUN   yum -y install git svn
 RUN   yum -y install zip unzip
 RUN   yum -y install tar
 RUN   yum -y install java
 RUN   yum -y install maven
 RUN   yum -y install ant
+RUN   yum -y install python-devel
+RUN   yum -y install gcc
 
-ENV SBT_LAUNCHER_URL http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.8/sbt-launch.jar
+RUN   rpm -iUvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm
+RUN   yum -y update
+RUN   yum -y install python-pip
+
+RUN   pip install --upgrade pip
+
+RUN   pip install shade
+RUN   pip install ansible
+
+ENV SBT_LAUNCHER_URL http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.11/sbt-launch.jar
 RUN mkdir -p /opt/sbt/
 RUN curl -SL $SBT_LAUNCHER_URL -o /opt/sbt/sbt-launch.jar
 ADD sbt /opt/sbt/
